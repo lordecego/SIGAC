@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  db-sigac:
+    container_name: db-sigac
+    image: postgres
+    environment:
+      - POSTGRES_DB=db-sigac
+      - POSTGRES_USER=db-sigac
+      - POSTGRES_PASSWORD=db-sigac
+      - PGDATA=/data/postgres
+    volumes:
+      - ./volume/v_db-sigac:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
