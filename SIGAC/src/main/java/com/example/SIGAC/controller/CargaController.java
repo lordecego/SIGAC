@@ -18,4 +18,9 @@ public class CargaController {
 		return cargaService.carga();
 	}
 	
+	@GetMapping("/cargaPaciente")
+	public String cargaPaciente() {
+		return cargaService.cargaPaciente();
+	}
+	
 }

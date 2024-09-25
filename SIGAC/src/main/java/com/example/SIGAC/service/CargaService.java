@@ -17,7 +17,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.SIGAC.models.entities.Equipamento;
 import com.example.SIGAC.models.entities.Paciente;
+import com.example.SIGAC.repository.EquipamentoRepository;
 import com.example.SIGAC.repository.PacienteRepository;
 
 @Service
@@ -26,6 +28,9 @@ public class CargaService {
 
 	@Autowired 
 	PacienteRepository pacienteRepository;
+	
+	@Autowired 
+	EquipamentoRepository equipamentoRepository;
 	
 	public String carga() {
 		String excelFileURL = "https://docs.google.com/spreadsheets/d/1x7zExjMzA3Tpe1LotlNivbc-SWs4YF1aEL_wEyzWuD4/export?format=xlsx";
@@ -162,5 +167,23 @@ public class CargaService {
 	    	return pacienteRepository.save(new Paciente(nome, dataNascimento, idade));
 	    	
 	    }
+
+		public String cargaPaciente() {
+			Paciente paciente = new Paciente(
+					"Abraão Da Silva", 
+					"12/08/1972",
+					"52"
+					);
+			
+			pacienteRepository.save(paciente);
+			
+			Equipamento equipamento = new Equipamento(
+					1L,
+					"3B12A54",
+					paciente
+					);
+			equipamentoRepository.save(equipamento);
+			return "1";
+		}
 	    
 }

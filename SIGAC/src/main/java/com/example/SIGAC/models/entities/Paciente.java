@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Paciente {
@@ -15,6 +16,9 @@ public class Paciente {
 	private String nome;
 	private String dataNascimento;
 	private int idade;
+	
+	@OneToOne
+	private Equipamento equipamento;
 	
 	public Paciente() {
 		// TODO Auto-generated constructor stub
@@ -51,6 +55,22 @@ public class Paciente {
 	}
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Equipamento getEquipamento() {
+		return equipamento;
+	}
+
+	public void setEquipamento(Equipamento equipamento) {
+		this.equipamento = equipamento;
 	}
 	
 }
